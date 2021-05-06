@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="main.css" rel="stylesheet" />
+  <title>Sistema de Vendas 1.0</title>
+</head>
+
+<body>
+  <!-- Conteúdo -->
+  <div class="wrapper">
+    <h1><i>store</i>Sistema de Vendas 1.0</h1>
+
+    <div class="content">
+      <div class="half">
+        <h3>Produtos</h3>
+        <div id="produtos">
+          <!-- Preenchido em JS -->
+        </div>
+      </div>
+
+      <div class="half">
+        <div id="carrinho">
+          <h3>Carrinho</h3>
+          <p>N&atilde;o h&aacute; itens no carrinho</p>
+          <!-- Preenchido em JS -->
+        </div>
+
+        <div id="total">
+          <div id="txtSubtotal">Subtotal: R$ <label>0.00</label></div>
+          <div id="txtImposto">Imposto: R$ <label>0.00</label></div>
+          <div id="txtTotal">Total: R$ <label>0.00</label></div>
+        </div>
+
+        <button id="btnCheckout">Checkout</button>
+        <button id="btnClear" disabled><i>delete</i></button>
+
+        <h3>Sa&iacute;da</h3>
+        <p id="txtSaida"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <!-- Classes -->
+  <script src="classes/item_carrinho.js"></script>
+  <script src="classes/carrinho.js"></script>
+  <script src="classes/produto.js"></script>
+
+  <!-- Servicos -->
+  <script src="servicos/servicoDeVendas.js"></script>
+
+  <!-- Componentes-->
+  <script src="componentes/itemCarrinhoView.js"></script>
+  <script src="componentes/produtoListView.js"></script>
+  <script src="componentes/carrinhoView.js"></script>
+  <script src="componentes/produtoView.js"></script>
+  <script src="componentes/saidaView.js"></script>
+  <script src="componentes/totalView.js"></script>
+
+  <!-- Main -->
+  <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
