@@ -1,15 +1,15 @@
-package com.bcopstein.adaptadores.repositorios;
+// package com.bcopstein.adaptadores.repositorios;
 
-import com.bcopstein.negocio.repositorios.IEstoqueRepository;
+// import com.bcopstein.negocio.repositorios.IEstoqueRepository;
 
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 
-/**
- * EstoqueRepository
- */
+// /**
+//  * EstoqueRepository
+//  */
 
-@Component
-public class EstoqueRepository implements IEstoqueRepository{
+// @Component
+// public class EstoqueRepository implements IEstoqueRepository{
 
     
-}
+// }

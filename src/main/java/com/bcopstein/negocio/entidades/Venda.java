@@ -22,33 +22,21 @@ import javax.persistence.Table;
 public class Venda {
 
     @Id
-    @SequenceGenerator(
-        name = "venda_sequence",
-        sequenceName = "venda_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "venda_sequence"
-    )
+    @SequenceGenerator(name = "venda_sequence", sequenceName = "venda_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_sequence")
     private Long codigo;
     private LocalDateTime data;
 
-    @OneToMany(
-        mappedBy = "venda",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemVenda> itemVenda;
 
-    public Venda(Long codigo) {
-        this.codigo = codigo;
+    public Venda() {
         this.itemVenda = new ArrayList<ItemVenda>();
     }
 
-    public Venda() {
+    // public Venda() {
 
-    }
+    // }
 
     public Long getCodigo() {
         return codigo;

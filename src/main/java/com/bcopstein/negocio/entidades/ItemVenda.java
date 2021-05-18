@@ -15,19 +15,12 @@ import javax.persistence.Table;
 public class ItemVenda {
 
     @Id
-    @SequenceGenerator(
-        name = "itemVenda_sequence",
-        sequenceName = "itemVenda_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "itemVenda_sequence"
-    )
+    @SequenceGenerator(name = "itemVenda_sequence", sequenceName = "itemVenda_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemVenda_sequence")
     private Long codigo;
     private int quantidade;
     private int precoUnitarioVenda;
-    private Long imposto;
+    private double imposto;
 
     @OneToOne
     @JoinColumn(name = "produto_id")
@@ -37,8 +30,7 @@ public class ItemVenda {
     @JoinColumn(name = "venda_id")
     private Venda venda;
 
-    public ItemVenda(Long codigo, int quantidade, int precoUnitarioVenda, Long imposto, Produto produto, Venda venda) {
-        this.codigo = codigo;
+    public ItemVenda(int quantidade, int precoUnitarioVenda, double imposto, Produto produto, Venda venda) {
         this.quantidade = quantidade;
         this.precoUnitarioVenda = precoUnitarioVenda;
         this.imposto = imposto;
@@ -58,7 +50,7 @@ public class ItemVenda {
         return codigo;
     }
 
-    public Long getImposto() {
+    public double getImposto() {
         return imposto;
     }
 
@@ -70,9 +62,9 @@ public class ItemVenda {
         return quantidade;
     }
 
-    // public Produto getProduto() {
-    //     return produto;
-    // }
+    public Produto getProduto() {
+        return produto;
+    }
 
     public void setVenda(Venda venda) {
         this.venda = venda;
@@ -94,9 +86,9 @@ public class ItemVenda {
         this.quantidade = quantidade;
     }
 
-    // public void setProduto(Produto produto) {
-    //     this.produto = produto;
-    // }
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 
     @Override
     public String toString() {

@@ -14,5 +14,4 @@ public class ServicoEstoque {
     public ServicoEstoque(IEstoqueRepository estoqueRepository) {
         this.estoqueRepository = estoqueRepository;
     }
-
 }

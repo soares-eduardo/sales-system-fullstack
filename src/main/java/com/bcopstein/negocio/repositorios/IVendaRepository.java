@@ -1,5 +1,9 @@
 package com.bcopstein.negocio.repositorios;
 
-public interface IVendaRepository {
+import com.bcopstein.negocio.entidades.Venda;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface IVendaRepository extends CrudRepository<Venda, Long>{
     
 }

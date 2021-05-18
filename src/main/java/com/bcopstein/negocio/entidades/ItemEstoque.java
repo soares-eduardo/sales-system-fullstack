@@ -14,15 +14,8 @@ import javax.persistence.Table;
 public class ItemEstoque {
 
     @Id
-    @SequenceGenerator(
-        name = "estoque_sequence",
-        sequenceName = "estoque_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "estoque_sequence"
-    )
+    @SequenceGenerator(name = "estoque_sequence", sequenceName = "estoque_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estoque_sequence")
     private Long codigo;
     private int quantidadeDisponivel;
 
@@ -36,8 +29,13 @@ public class ItemEstoque {
         this.produto = produto;
     }
 
+    public ItemEstoque(int quantidadeDisponivel, Produto produto) {
+        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.produto = produto;
+    }
+
     public ItemEstoque() {
-        
+
     }
 
     public Long getCodigo() {
