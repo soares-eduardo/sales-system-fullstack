@@ -1,4 +1,4 @@
-package com.bcopstein;
+package com.bcopstein.negocio.entidades;
 
 public class ItemCarrinho {
   private int codigo;
