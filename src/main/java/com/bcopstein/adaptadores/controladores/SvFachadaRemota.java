@@ -18,39 +18,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/vendas")
 public class SvFachadaRemota {
 
-  @GetMapping
-  public List<Produto> getProdutos() {
-    return List.of(new Produto("Teste 1", 20));
-  }
+	@GetMapping
+	public List<Produto> getProdutos() {
+		return List.of(new Produto("Teste 1", 20));
+	}
 
-  // @GetMapping("/produtos")
-  // @CrossOrigin(origins = "*")
-  // public List<Produto> listaProdutos() {
+	// @GetMapping("/produtos")
+	// @CrossOrigin(origins = "*")
+	// public List<Produto> listaProdutos() {
 
-  // }
+	// }
 
-  // @GetMapping("/autorizacao")
-  // @CrossOrigin(origins = "*")
-  // public boolean podeVender(@RequestParam final Integer codProd,
-  // @RequestParam final Integer qtdade) {
+	// @GetMapping("/autorizacao")
+	// @CrossOrigin(origins = "*")
+	// public boolean podeVender(@RequestParam final Integer codProd,
+	// @RequestParam final Integer qtdade) {
 
-  // }
+	// }
 
-  // @PostMapping("/confirmacao")
-  // @CrossOrigin(origins = "*")
-  // public boolean confirmaVenda(@RequestBody final ItemCarrinho[] itens) {
+	// @PostMapping("/confirmacao")
+	// @CrossOrigin(origins = "*")
+	// public boolean confirmaVenda(@RequestBody final ItemCarrinho[] itens) {
 
-  // }
+	// }
 
-  // @GetMapping("/historico")
-  // @CrossOrigin(origins = "*")
-  // public List<String> vendasEfetuadas() {
+	// @GetMapping("/historico")
+	// @CrossOrigin(origins = "*")
+	// public List<String> vendasEfetuadas() {
 
-  // }
+	// }
 
-  // @PostMapping("/subtotal")
-  // @CrossOrigin(origins = "*")
-  // public Integer[] calculaSubtotal(@RequestBody final ItemCarrinho[] itens) {
+	// @PostMapping("/subtotal")
+	// @CrossOrigin(origins = "*")
+	// public Integer[] calculaSubtotal(@RequestBody final ItemCarrinho[] itens) {
 
-  // }
+	// }
 }

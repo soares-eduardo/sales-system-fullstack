@@ -1,9 +1,13 @@
 package com.bcopstein.negocio.repositorios;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.bcopstein.negocio.entidades.ItemEstoque;
 
-import org.springframework.data.repository.CrudRepository;
+public interface IEstoqueRepository {
 
-public interface IEstoqueRepository extends CrudRepository<ItemEstoque, Long>{
+    List<ItemEstoque> getAllItemEstoque();
+    Optional<ItemEstoque> getItemEstoqueById(Long id);
     
 }

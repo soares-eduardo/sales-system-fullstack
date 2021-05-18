@@ -1,9 +1,13 @@
 package com.bcopstein.negocio.repositorios;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.bcopstein.negocio.entidades.Venda;
 
-import org.springframework.data.repository.CrudRepository;
-
-public interface IVendaRepository extends CrudRepository<Venda, Long>{
+public interface IVendaRepository {
+    
+    List<Venda> getAllVendas();
+    Optional<Venda> getVendaById(Long id);
     
 }

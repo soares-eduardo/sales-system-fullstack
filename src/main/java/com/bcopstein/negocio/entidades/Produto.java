@@ -11,53 +11,46 @@ import javax.persistence.Table;
 @Table(name = "produto")
 public class Produto {
 
-  @Id
-  @SequenceGenerator(
-    name = "produto_sequence",
-    sequenceName = "produto_sequence",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "produto_sequence"
-  )
-  private Long codigo;
-  private String descricao;
-  private double precoUnitario;
+	@Id
+	@SequenceGenerator(name = "produto_sequence", sequenceName = "produto_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produto_sequence")
+	private Long codigo;
+	private String descricao;
+	private double precoUnitario;
 
-  public Produto(Long codigo, String descricao, double precoUnitario) {
-    this.codigo = codigo;
-    this.descricao = descricao;
-    this.precoUnitario = precoUnitario;
-  }
+	public Produto(Long codigo, String descricao, double precoUnitario) {
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.precoUnitario = precoUnitario;
+	}
 
-  public Produto(String descricao, double precoUnitario) {
-    this.descricao = descricao;
-    this.precoUnitario = precoUnitario;
-  }
+	public Produto(String descricao, double precoUnitario) {
+		this.descricao = descricao;
+		this.precoUnitario = precoUnitario;
+	}
 
-  public Produto() {
-    
-  }
+	public Produto() {
 
-  public Long getCodigo() {
-    return codigo;
-  }
+	}
 
-  public String getDescricao() {
-    return descricao;
-  }
+	public Long getCodigo() {
+		return codigo;
+	}
 
-  public double getPrecoUnitario() {
-    return precoUnitario;
-  }
+	public String getDescricao() {
+		return descricao;
+	}
 
-  public void setPrecoUnitario(double precoUnitario) {
-    this.precoUnitario = precoUnitario;
-  }
+	public double getPrecoUnitario() {
+		return precoUnitario;
+	}
 
-  @Override
-  public String toString() {
-    return "Produto [codigo=" + codigo + ", descricao=" + descricao + ", preco=" + precoUnitario + "]";
-  }
+	public void setPrecoUnitario(double precoUnitario) {
+		this.precoUnitario = precoUnitario;
+	}
+
+	@Override
+	public String toString() {
+		return "Produto [codigo=" + codigo + ", descricao=" + descricao + ", preco=" + precoUnitario + "]";
+	}
 }

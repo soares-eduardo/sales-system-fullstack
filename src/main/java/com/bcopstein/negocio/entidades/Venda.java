@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  * Venda
@@ -25,6 +28,9 @@ public class Venda {
     @SequenceGenerator(name = "venda_sequence", sequenceName = "venda_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_sequence")
     private Long codigo;
+
+    @CreationTimestamp
+    @Column(name = "data")
     private LocalDateTime data;
 
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -33,10 +39,6 @@ public class Venda {
     public Venda() {
         this.itemVenda = new ArrayList<ItemVenda>();
     }
-
-    // public Venda() {
-
-    // }
 
     public Long getCodigo() {
         return codigo;

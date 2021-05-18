@@ -1,9 +1,12 @@
 package com.bcopstein.negocio.repositorios;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.bcopstein.negocio.entidades.Produto;
 
-import org.springframework.data.repository.CrudRepository;
+public interface IProdutoRepository {
 
-public interface IProdutoRepository extends CrudRepository<Produto, Long>{
-    
+    List<Produto> getAllProdutos();
+    Optional<Produto> getProdutoById(Long id);
 }
