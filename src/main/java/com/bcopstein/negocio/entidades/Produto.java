@@ -7,10 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+@Entity
+@Table(name = "produto")
 public class Produto {
 
-  
+  @Id
+  @SequenceGenerator(
+    name = "produto_sequence",
+    sequenceName = "produto_sequence",
+    allocationSize = 1
+  )
+  @GeneratedValue(
+    strategy = GenerationType.SEQUENCE,
+    generator = "produto_sequence"
+  )
   private Long codigo;
   private String descricao;
   private double precoUnitario;

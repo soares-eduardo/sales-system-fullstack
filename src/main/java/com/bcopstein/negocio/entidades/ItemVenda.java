@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,8 +29,9 @@ public class ItemVenda {
     private int precoUnitarioVenda;
     private Long imposto;
 
-
-    //private Produto produto;
+    @OneToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "venda_id")
@@ -40,7 +42,7 @@ public class ItemVenda {
         this.quantidade = quantidade;
         this.precoUnitarioVenda = precoUnitarioVenda;
         this.imposto = imposto;
-        //this.produto = produto;
+        this.produto = produto;
         this.venda = venda;
     }
 
