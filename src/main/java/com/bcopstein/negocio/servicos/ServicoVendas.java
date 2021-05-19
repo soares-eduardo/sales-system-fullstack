@@ -1,9 +1,11 @@
 package com.bcopstein.negocio.servicos;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.Venda;
 import com.bcopstein.negocio.repositorios.IVendaRepository;
 
@@ -24,11 +26,18 @@ public class ServicoVendas {
         this.vendaRepository = vendaRepository;
     }
 
-    public List<Venda> getAllVendas() {
-        return vendaRepository.getAllVendas();
+    //TODO 
+    public boolean confirmaVenda(List<ItemEstoque> itens) {
+        return true;
     }
 
-    public Optional<Venda> getVendaById(Long id) {
-        return vendaRepository.getVendaById(id);
+    //TODO
+    public List<Venda> vendasEfetuadas() {
+        return null;
+    }
+
+    //TODO
+    public Integer[] calculaSubtotal(List<ItemEstoque> itens) {
+        return null;
     }
 }

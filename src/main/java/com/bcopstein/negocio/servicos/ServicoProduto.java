@@ -19,12 +19,7 @@ public class ServicoProduto {
         this.produtoRepository = produtoRepository;
     }
 
-    public List<Produto> getAllProdutos() {
+    public List<Produto> listaProdutos() {
         return produtoRepository.getAllProdutos();
     }
-
-    public Optional<Produto> getProdutoById(Long id) {
-        return produtoRepository.getProdutoById(id);
-    }
-
 }

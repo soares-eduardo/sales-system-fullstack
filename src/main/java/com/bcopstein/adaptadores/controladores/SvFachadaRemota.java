@@ -1,11 +1,17 @@
 package com.bcopstein.adaptadores.controladores;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.bcopstein.negocio.entidades.ItemCarrinho;
+import com.bcopstein.aplicacao.usecase.CalculaSubtotalUC;
+import com.bcopstein.aplicacao.usecase.ConfirmaVendaUC;
+import com.bcopstein.aplicacao.usecase.ListaProdutosUC;
+import com.bcopstein.aplicacao.usecase.PodeVenderUC;
+import com.bcopstein.aplicacao.usecase.VendasEfetuadasUC;
+import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.Produto;
+import com.bcopstein.negocio.entidades.Venda;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,39 +24,50 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/vendas")
 public class SvFachadaRemota {
 
-	@GetMapping
-	public List<Produto> getProdutos() {
-		return List.of(new Produto("Teste 1", 20));
+	private CalculaSubtotalUC calculaSubtotalUC;
+	private ConfirmaVendaUC confirmaVendaUC;
+	private ListaProdutosUC listaProdutosUC;
+	private PodeVenderUC podeVenderUC;
+	private VendasEfetuadasUC vendasEfetuadasUC;
+
+	@Autowired
+	public SvFachadaRemota(CalculaSubtotalUC calculaSubtotalUC, ConfirmaVendaUC confirmaVendaUC,
+			ListaProdutosUC listaProdutosUC, PodeVenderUC podeVenderUC, VendasEfetuadasUC vendasEfetuadasUC) {
+				this.calculaSubtotalUC = calculaSubtotalUC;
+				this.confirmaVendaUC = confirmaVendaUC;
+				this.listaProdutosUC = listaProdutosUC;
+				this.podeVenderUC = podeVenderUC;
+				this.vendasEfetuadasUC = vendasEfetuadasUC;
 	}
 
-	// @GetMapping("/produtos")
-	// @CrossOrigin(origins = "*")
-	// public List<Produto> listaProdutos() {
+	@GetMapping("/produtos")
+	@CrossOrigin(origins = "*")
+	public List<Produto> listaProdutos() {
+		return listaProdutosUC.run();
+	}
 
-	// }
+	@GetMapping("/autorizacao")
+	@CrossOrigin(origins = "*")
+	public boolean podeVender(@RequestParam final Long codProd,
+	@RequestParam final Integer qtdade) {
+		return podeVenderUC.run(codProd, qtdade);
+	}
 
-	// @GetMapping("/autorizacao")
-	// @CrossOrigin(origins = "*")
-	// public boolean podeVender(@RequestParam final Integer codProd,
-	// @RequestParam final Integer qtdade) {
+	@PostMapping("/confirmacao")
+	@CrossOrigin(origins = "*")
+	public boolean confirmaVenda(@RequestBody final List<ItemEstoque> itens) {
+		return confirmaVendaUC.run(itens);
+	}
 
-	// }
+	@GetMapping("/historico")
+	@CrossOrigin(origins = "*")
+	public List<Venda> vendasEfetuadas() {
+		return vendasEfetuadasUC.run();
+	}
 
-	// @PostMapping("/confirmacao")
-	// @CrossOrigin(origins = "*")
-	// public boolean confirmaVenda(@RequestBody final ItemCarrinho[] itens) {
-
-	// }
-
-	// @GetMapping("/historico")
-	// @CrossOrigin(origins = "*")
-	// public List<String> vendasEfetuadas() {
-
-	// }
-
-	// @PostMapping("/subtotal")
-	// @CrossOrigin(origins = "*")
-	// public Integer[] calculaSubtotal(@RequestBody final ItemCarrinho[] itens) {
-
-	// }
+	@PostMapping("/subtotal")
+	@CrossOrigin(origins = "*")
+	public Integer[] calculaSubtotal(@RequestBody final List<ItemEstoque> itens) {
+		return calculaSubtotalUC.run(itens);
+	}
 }

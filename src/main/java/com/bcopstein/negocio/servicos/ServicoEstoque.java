@@ -19,11 +19,8 @@ public class ServicoEstoque {
         this.estoqueRepository = estoqueRepository;
     }
 
-    public List<ItemEstoque> getAllItemEstoque() {
-        return estoqueRepository.getAllItemEstoque();
-    }
-
-    public Optional<ItemEstoque> getItemEstoqueById(Long id) {
-        return estoqueRepository.getItemEstoqueById(id);
+    //TODO
+    public boolean podeVender(Long codigo, Integer quantidade) {
+        return true;
     }
 }
