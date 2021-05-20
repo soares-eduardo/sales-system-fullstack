@@ -21,7 +21,7 @@ public class ItemVenda {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemVenda_sequence")
     private Long codigo;
     private int quantidade;
-    private int precoUnitarioVenda;
+    private double precoUnitarioVenda;
     private double imposto;
 
     @OneToOne
@@ -33,7 +33,7 @@ public class ItemVenda {
     @JsonBackReference
     private Venda venda;
 
-    public ItemVenda(int quantidade, int precoUnitarioVenda, double imposto, Produto produto, Venda venda) {
+    public ItemVenda(int quantidade, double precoUnitarioVenda, double imposto, Produto produto, Venda venda) {
         this.quantidade = quantidade;
         this.precoUnitarioVenda = precoUnitarioVenda;
         this.imposto = imposto;
@@ -57,7 +57,7 @@ public class ItemVenda {
         return imposto;
     }
 
-    public int getPrecoUnitarioVenda() {
+    public double getPrecoUnitarioVenda() {
         return precoUnitarioVenda;
     }
 

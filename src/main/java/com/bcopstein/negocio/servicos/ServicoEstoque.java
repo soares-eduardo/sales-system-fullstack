@@ -34,20 +34,28 @@ public class ServicoEstoque {
         return estoqueRepository.getAllItemEstoque();
     }
 
-    //TODO
-    public Integer[] calculaSubtotal(List<ItemEstoque> itens) {
+    public ItemEstoque buscarItemEstoqueByCodigo(Long codigo) {
         
+        ItemEstoque itemEstoque = estoqueRepository.getItemEstoqueById(codigo)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Produto de codigo " + codigo + " não foi encontrado no estoque."));
+
+        return itemEstoque;
+    }
+
+    public Integer[] calculaSubtotal(List<ItemEstoque> itens) {
+
+        //TODO Strategy
         final double TAXA = 0.1;
         final Integer[] valores = new Integer[3];
 
         Integer imposto = 0;
         int subtotal = 0;
-    
+
         for (ItemEstoque item : itens) {
-            
-            ItemEstoque itemEstoque = estoqueRepository.getItemEstoqueById(item.getCodigo()).orElseThrow(
-                () -> new IllegalStateException("Produto de codigo " + item.getCodigo() + " não foi encontrado no estoque."));
-            
+
+            ItemEstoque itemEstoque = buscarItemEstoqueByCodigo(item.getCodigo());
+
             subtotal += itemEstoque.getProduto().getPrecoUnitario() * item.getQuantidade();
         }
 
@@ -58,5 +66,16 @@ public class ServicoEstoque {
         valores[2] = subtotal + imposto;
 
         return valores;
+    }
+
+    public void darBaixaEstoque(List<ItemEstoque> itens) {
+
+        for (ItemEstoque item : itens) {
+
+            ItemEstoque itemEstoque = buscarItemEstoqueByCodigo(item.getCodigo());
+
+            itemEstoque.setQuantidade(itemEstoque.getQuantidade() - item.getQuantidade());
+
+        }
     }
 }

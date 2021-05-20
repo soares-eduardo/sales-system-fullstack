@@ -33,11 +33,11 @@ public class SvFachadaRemota {
 	@Autowired
 	public SvFachadaRemota(CalculaSubtotalUC calculaSubtotalUC, ConfirmaVendaUC confirmaVendaUC,
 			ListaProdutosUC listaProdutosUC, PodeVenderUC podeVenderUC, VendasEfetuadasUC vendasEfetuadasUC) {
-				this.calculaSubtotalUC = calculaSubtotalUC;
-				this.confirmaVendaUC = confirmaVendaUC;
-				this.listaProdutosUC = listaProdutosUC;
-				this.podeVenderUC = podeVenderUC;
-				this.vendasEfetuadasUC = vendasEfetuadasUC;
+		this.calculaSubtotalUC = calculaSubtotalUC;
+		this.confirmaVendaUC = confirmaVendaUC;
+		this.listaProdutosUC = listaProdutosUC;
+		this.podeVenderUC = podeVenderUC;
+		this.vendasEfetuadasUC = vendasEfetuadasUC;
 	}
 
 	@GetMapping("/produtos")
@@ -48,8 +48,7 @@ public class SvFachadaRemota {
 
 	@GetMapping("/autorizacao")
 	@CrossOrigin(origins = "*")
-	public boolean podeVender(@RequestParam final Long codProd,
-	@RequestParam final Integer qtdade) {
+	public boolean podeVender(@RequestParam final Long codProd, @RequestParam final Integer qtdade) {
 		return podeVenderUC.run(codProd, qtdade);
 	}
 
