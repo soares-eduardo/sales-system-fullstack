@@ -34,6 +34,11 @@ public class ItemEstoque {
         this.produto = produto;
     }
 
+    public ItemEstoque(Long codigo, int quantidade) {
+        this.codigo = codigo;
+        this.quantidade = quantidade;
+    }
+
     public ItemEstoque() {
 
     }

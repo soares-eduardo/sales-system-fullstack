@@ -81,8 +81,8 @@ class ServicoDeVendas {
           produtos.push(
             new Produto(
               dados[i].codigo,
-              dados[i].descricao,
-              dados[i].precoUnitario,
+              dados[i].produto.descricao,
+              dados[i].produto.precoUnitario,
               dados[i].qtdade
             )
           );

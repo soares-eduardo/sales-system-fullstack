@@ -18,8 +18,6 @@ public class ServicoProduto {
         this.produtoRepository = produtoRepository;
     }
 
-    public List<Produto> listaProdutos() {
-        return produtoRepository.getAllProdutos();
-    }
+    
 
 }

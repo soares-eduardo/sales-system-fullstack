@@ -1,6 +1,6 @@
 class ItemCarrinhoView {
   definirQuantidade(qtd) {
-    const preco = (this.itemCarrinho.produto.preco * qtd).toFixed(2);
+    const preco = (this.itemCarrinho.produto.precoUnitario * qtd).toFixed(2);
     this.preco.textContent = "R$ " + preco;
     this.qtd.value = qtd;
 

@@ -31,17 +31,4 @@ public class ServicoVendas {
     public List<Venda> vendasEfetuadas() {
         return vendaRepository.getAllVendas();
     }
-
-    // // TODO
-    // public Integer[] calculaSubtotal(List<ItemEstoque> itens) {
-        
-    //     Integer[] valores = new Integer[3];
-
-    //     int subtotal = 0;
-    //     for (ItemEstoque item : itens) {
-    //         subtotal += item.getProduto().getPrecoUnitario() * item.getQuantidade();
-    //     }
-
-    //     return null;
-    // }
 }
