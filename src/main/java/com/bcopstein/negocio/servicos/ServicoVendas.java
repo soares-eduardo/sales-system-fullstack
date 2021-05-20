@@ -31,7 +31,6 @@ public class ServicoVendas {
         return true;
     }
 
-    //TODO
     public List<Venda> vendasEfetuadas() {
         return vendaRepository.getAllVendas();
     }

@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "itemVenda")
 public class ItemVenda {
@@ -28,6 +30,7 @@ public class ItemVenda {
 
     @ManyToOne
     @JoinColumn(name = "venda_id")
+    @JsonBackReference
     private Venda venda;
 
     public ItemVenda(int quantidade, int precoUnitarioVenda, double imposto, Produto produto, Venda venda) {

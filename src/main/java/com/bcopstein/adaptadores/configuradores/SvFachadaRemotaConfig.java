@@ -42,8 +42,8 @@ public class SvFachadaRemotaConfig {
 
             Venda venda1 = new Venda();
 
-            ItemVenda itemVenda1 = new ItemVenda(1, 2640, 10, geladeira, venda1);
-            ItemVenda itemVenda2 = new ItemVenda(2, 550, 5, fogao, venda1);
+            ItemVenda itemVenda1 = new ItemVenda(3, 2640, 10, geladeira, venda1);
+            ItemVenda itemVenda2 = new ItemVenda(5, 550, 5, fogao, venda1);
 
             venda1.setItemVenda(List.of(itemVenda1,itemVenda2));
 
