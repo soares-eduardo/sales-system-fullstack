@@ -17,20 +17,20 @@ public class ItemEstoque {
     @SequenceGenerator(name = "estoque_sequence", sequenceName = "estoque_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "estoque_sequence")
     private Long codigo;
-    private int quantidadeDisponivel;
+    private int quantidade;
 
     @OneToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
-    public ItemEstoque(Long codigo, int quantidadeDisponivel, Produto produto) {
+    public ItemEstoque(Long codigo, int quantidade, Produto produto) {
         this.codigo = codigo;
-        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.quantidade = quantidade;
         this.produto = produto;
     }
 
-    public ItemEstoque(int quantidadeDisponivel, Produto produto) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
+    public ItemEstoque(int quantidade, Produto produto) {
+        this.quantidade = quantidade;
         this.produto = produto;
     }
 
@@ -46,8 +46,8 @@ public class ItemEstoque {
         return produto;
     }
 
-    public int getQuantidadeDisponivel() {
-        return quantidadeDisponivel;
+    public int getQuantidade() {
+        return quantidade;
     }
 
     public void setCodigo(Long codigo) {
@@ -58,8 +58,8 @@ public class ItemEstoque {
         this.produto = produto;
     }
 
-    public void setQuantidadeDisponivel(int quantidadeDisponivel) {
-        this.quantidadeDisponivel = quantidadeDisponivel;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override

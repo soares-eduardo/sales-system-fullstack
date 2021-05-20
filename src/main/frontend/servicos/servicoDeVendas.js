@@ -82,7 +82,7 @@ class ServicoDeVendas {
             new Produto(
               dados[i].codigo,
               dados[i].descricao,
-              dados[i].preco,
+              dados[i].precoUnitario,
               dados[i].qtdade
             )
           );

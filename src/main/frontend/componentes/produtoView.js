@@ -18,7 +18,7 @@ class ProdutoView {
     const select = elemento.querySelector(".select");
     const preco = elemento.querySelector(".preco");
 
-    preco.innerHTML = "R$ " + this.produto.preco.toFixed(2);
+    preco.innerHTML = "R$ " + this.produto.precoUnitario.toFixed(2);
     descricao.innerHTML = this.produto.descricao;
     this.btnSelect = select;
 

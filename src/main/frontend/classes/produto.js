@@ -1,8 +1,8 @@
 class Produto {
-  constructor(codigo, descricao, preco, quantidade) {
+  constructor(codigo, descricao, precoUnitario, quantidade) {
     this.descricao = descricao;
     this.codigo = codigo;
-    this.preco = preco;
+    this.precoUnitario = precoUnitario;
     this.quantidade = quantidade;
   }
 }

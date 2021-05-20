@@ -1,8 +1,5 @@
 package com.bcopstein.negocio.servicos;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.repositorios.IEstoqueRepository;
 
@@ -19,21 +16,15 @@ public class ServicoEstoque {
         this.estoqueRepository = estoqueRepository;
     }
 
-    // TODO
     public boolean podeVender(Long codigo, Integer quantidade) {
 
         ItemEstoque item = estoqueRepository.getItemEstoqueById(codigo).orElseThrow(
                 () -> new IllegalStateException("Produto de codigo " + codigo + " não foi encontrado no estoque."));
 
-        if (item.getQuantidadeDisponivel() >= quantidade) {
+        if (item.getQuantidade() >= quantidade) {
             return true;
         }
 
         return false;
     }
-
-    public List<ItemEstoque> listaProdutos() {
-        return estoqueRepository.getAllItemEstoque();
-    } 
-
 }

@@ -75,6 +75,8 @@ async function calcularSubtotal() {
 
 async function carregarProdutos() {
   let lista_produtos = await servico.getProdutos();
+
+
   produtos.carregarProdutos(lista_produtos);
 }
 
