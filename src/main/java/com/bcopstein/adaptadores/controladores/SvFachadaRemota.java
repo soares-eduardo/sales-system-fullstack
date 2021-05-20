@@ -42,7 +42,7 @@ public class SvFachadaRemota {
 
 	@GetMapping("/produtos")
 	@CrossOrigin(origins = "*")
-	public List<Produto> listaProdutos() {
+	public List<ItemEstoque> listaProdutos() {
 		return listaProdutosUC.run();
 	}
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicoEstoque {
-    
+
     private IEstoqueRepository estoqueRepository;
 
     @Autowired
@@ -19,8 +19,21 @@ public class ServicoEstoque {
         this.estoqueRepository = estoqueRepository;
     }
 
-    //TODO
+    // TODO
     public boolean podeVender(Long codigo, Integer quantidade) {
-        return true;
+
+        ItemEstoque item = estoqueRepository.getItemEstoqueById(codigo).orElseThrow(
+                () -> new IllegalStateException("Produto de " + codigo + " não foi encontrado no estoque."));
+
+        if (item.getQuantidadeDisponivel() >= quantidade) {
+            return true;
+        }
+
+        return false;
     }
+
+    public List<ItemEstoque> listaProdutos() {
+        return estoqueRepository.getAllItemEstoque();
+    } 
+
 }
