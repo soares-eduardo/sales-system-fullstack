@@ -23,7 +23,7 @@ public class ServicoEstoque {
     public boolean podeVender(Long codigo, Integer quantidade) {
 
         ItemEstoque item = estoqueRepository.getItemEstoqueById(codigo).orElseThrow(
-                () -> new IllegalStateException("Produto de " + codigo + " não foi encontrado no estoque."));
+                () -> new IllegalStateException("Produto de codigo " + codigo + " não foi encontrado no estoque."));
 
         if (item.getQuantidadeDisponivel() >= quantidade) {
             return true;
