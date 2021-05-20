@@ -33,7 +33,7 @@ public class ServicoVendas {
 
     //TODO
     public List<Venda> vendasEfetuadas() {
-        return null;
+        return vendaRepository.getAllVendas();
     }
 
     //TODO

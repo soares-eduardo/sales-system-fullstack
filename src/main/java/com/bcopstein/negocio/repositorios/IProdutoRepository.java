@@ -9,4 +9,5 @@ public interface IProdutoRepository {
 
     List<Produto> getAllProdutos();
     Optional<Produto> getProdutoById(Long id);
+    void insertProdutos(List<Produto> produtos);
 }

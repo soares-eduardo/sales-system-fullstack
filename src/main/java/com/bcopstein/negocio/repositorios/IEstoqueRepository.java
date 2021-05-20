@@ -9,5 +9,5 @@ public interface IEstoqueRepository {
 
     List<ItemEstoque> getAllItemEstoque();
     Optional<ItemEstoque> getItemEstoqueById(Long id);
-    
+    void insertItemEstoque(List<ItemEstoque> itemEstoque);
 }

@@ -28,4 +28,7 @@ public class VendaRepository implements IVendaRepository{
         return vendaJpa.findById(id);
     }
 
+    public void insertVendas(List<Venda> vendas) {
+        vendaJpa.saveAll(vendas);
+    }
 }

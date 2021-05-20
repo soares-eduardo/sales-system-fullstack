@@ -27,4 +27,7 @@ public class ProdutoRepository implements IProdutoRepository{
         return produtoJpa.findById(id);
     }
 
+    public void insertProdutos(List<Produto> produtos) {
+        produtoJpa.saveAll(produtos);
+    }
 }

@@ -27,4 +27,8 @@ public class EstoqueRepository implements IEstoqueRepository {
     public Optional<ItemEstoque> getItemEstoqueById(Long id) {
         return estoqueJpa.findById(id);
     }
+
+    public void insertItemEstoque(List<ItemEstoque> itemEstoque) {
+        estoqueJpa.saveAll(itemEstoque);
+    }
 }

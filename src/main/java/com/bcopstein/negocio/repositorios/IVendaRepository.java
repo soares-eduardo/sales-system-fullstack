@@ -9,5 +9,5 @@ public interface IVendaRepository {
     
     List<Venda> getAllVendas();
     Optional<Venda> getVendaById(Long id);
-    
+    void insertVendas(List<Venda> vendas);
 }
