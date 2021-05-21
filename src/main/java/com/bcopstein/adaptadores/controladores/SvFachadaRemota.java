@@ -8,7 +8,6 @@ import com.bcopstein.aplicacao.usecase.ListaProdutosUC;
 import com.bcopstein.aplicacao.usecase.PodeVenderUC;
 import com.bcopstein.aplicacao.usecase.VendasEfetuadasUC;
 import com.bcopstein.negocio.entidades.ItemEstoque;
-import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
 
 import org.springframework.beans.factory.annotation.Autowired;
