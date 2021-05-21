@@ -1,6 +1,7 @@
 package com.bcopstein.negocio.servicos;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.repositorios.IProdutoRepository;
@@ -17,4 +18,17 @@ public class ServicoProduto {
     public ServicoProduto(IProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
     }
+
+    public List<Produto> getAllProdutos() {
+        return produtoRepository.getAllProdutos();
+    }
+
+    public Optional<Produto> getProdutoById(Long codigo) {
+        return produtoRepository.getProdutoById(codigo);
+    }
+
+    public void insertProdutos(List<Produto> listaProdutos) {
+        produtoRepository.insertProdutos(listaProdutos);
+    }
+
 }
