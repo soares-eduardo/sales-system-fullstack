@@ -5,6 +5,6 @@ package com.bcopstein.negocio.strategy;
  */
 public interface ICalculoTaxaPais {
 
-    double calcularTaxa(int subtotal);
+    Integer calcularTaxa(int subtotal);
 
 }

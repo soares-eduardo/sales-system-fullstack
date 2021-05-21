@@ -7,10 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalculoTaxaPaisDois implements ICalculoTaxaPais{
     
-    public double calcularTaxa(int subtotal) {
+    private double taxa = 0.15;
+
+    public Integer calcularTaxa(int subtotal) {
         if (subtotal > 8000){
-            return subtotal * (20 / 100);
+            taxa = 0.2;
+            return (int) (subtotal * taxa);
         }
-        return subtotal * (15 / 100);
+        return (int) (subtotal * taxa);
     }
 }

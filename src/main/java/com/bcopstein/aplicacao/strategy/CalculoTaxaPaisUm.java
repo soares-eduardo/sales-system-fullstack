@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Primary
-public class CalculoTaxaPaisUm implements ICalculoTaxaPais{
+public class CalculoTaxaPaisUm implements ICalculoTaxaPais {
 
-    public double calcularTaxa(int subtotal) {
-        return subtotal * (20 / 100);
+    private final double TAXA = 0.2;
+
+    public Integer calcularTaxa(int subtotal) {
+        return (int) (subtotal * TAXA);
     }
 }

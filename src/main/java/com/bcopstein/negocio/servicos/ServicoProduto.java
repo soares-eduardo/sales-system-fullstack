@@ -17,7 +17,4 @@ public class ServicoProduto {
     public ServicoProduto(IProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
     }
-
-    
-
 }

@@ -21,7 +21,7 @@ public class ServicoEstoque {
         this.calculoTaxaPaisRepository = calculoTaxaPaisRepository;
     }
 
-    public double calcularTaxa(int subtotal) {
+    public int calcularTaxa(int subtotal) {
         return calculoTaxaPaisRepository.calcularTaxa(subtotal);
     }
     
@@ -65,7 +65,7 @@ public class ServicoEstoque {
             subtotal += itemEstoque.getProduto().getPrecoUnitario() * item.getQuantidade();
         }
 
-        imposto = (int) calcularTaxa(subtotal);
+        imposto = calcularTaxa(subtotal);
 
         valores[0] = subtotal;
         valores[1] = imposto;
