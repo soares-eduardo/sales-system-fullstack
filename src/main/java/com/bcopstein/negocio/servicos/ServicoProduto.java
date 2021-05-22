@@ -30,5 +30,4 @@ public class ServicoProduto {
     public void insertProdutos(List<Produto> listaProdutos) {
         produtoRepository.insertProdutos(listaProdutos);
     }
-
 }

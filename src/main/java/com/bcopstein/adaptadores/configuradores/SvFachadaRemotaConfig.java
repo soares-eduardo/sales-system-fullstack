@@ -5,21 +5,25 @@ import java.util.List;
 import com.bcopstein.adaptadores.repositorios.EstoqueRepository;
 import com.bcopstein.adaptadores.repositorios.ProdutoRepository;
 import com.bcopstein.adaptadores.repositorios.VendaRepository;
+import com.bcopstein.aplicacao.strategy.CalculoTaxaPaisDois;
+import com.bcopstein.aplicacao.strategy.CalculoTaxaPaisUm;
 import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.ItemVenda;
 import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
+import com.bcopstein.negocio.strategy.ICalculoTaxaPais;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SvFachadaRemotaConfig {
     
-
     @Bean
     CommandLineRunner commandLineRunner(
+
         EstoqueRepository estoqueRepository,
         ProdutoRepository produtoRepository,
         VendaRepository vendaRepository    
@@ -49,5 +53,17 @@ public class SvFachadaRemotaConfig {
 
             vendaRepository.insertVendas(List.of(venda1));
         };
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "calculo.taxa", havingValue = "um", matchIfMissing = true)
+    public ICalculoTaxaPais setPaisUm() {
+        return new CalculoTaxaPaisUm();
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "calculo.taxa", havingValue = "dois")
+    public ICalculoTaxaPais setPaisDois() {
+        return new CalculoTaxaPaisDois();
     }
 }
