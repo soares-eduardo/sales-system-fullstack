@@ -11,7 +11,7 @@ import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.ItemVenda;
 import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
-import com.bcopstein.negocio.strategy.ICalculoTaxaPais;
+import com.bcopstein.negocio.repositorios.ICalculoTaxaPaisStrategyRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -55,15 +55,17 @@ public class SvFachadaRemotaConfig {
         };
     }
 
+    // calculo_taxa=dois mvn spring-boot:run
+
     @Bean
     @ConditionalOnProperty(name = "calculo.taxa", havingValue = "um", matchIfMissing = true)
-    public ICalculoTaxaPais setPaisUm() {
+    public ICalculoTaxaPaisStrategyRepository setPaisUm() {
         return new CalculoTaxaPaisUm();
     }
 
     @Bean
     @ConditionalOnProperty(name = "calculo.taxa", havingValue = "dois")
-    public ICalculoTaxaPais setPaisDois() {
+    public ICalculoTaxaPaisStrategyRepository setPaisDois() {
         return new CalculoTaxaPaisDois();
     }
 }

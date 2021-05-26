@@ -1,8 +1,8 @@
 package com.bcopstein.aplicacao.strategy;
 
-import com.bcopstein.negocio.strategy.ICalculoTaxaPais;
+import com.bcopstein.negocio.repositorios.ICalculoTaxaPaisStrategyRepository;
 
-public class CalculoTaxaPaisUm implements ICalculoTaxaPais {
+public class CalculoTaxaPaisUm implements ICalculoTaxaPaisStrategyRepository {
 
     private final double TAXA = 0.2;
 
