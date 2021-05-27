@@ -3,7 +3,6 @@ package com.bcopstein.negocio.servicos;
 import java.util.List;
 
 import com.bcopstein.negocio.entidades.ItemEstoque;
-import com.bcopstein.negocio.factory.LimiteVenda;
 import com.bcopstein.negocio.factory.LimiteVendaFactory;
 import com.bcopstein.negocio.repositorios.ICalculoTaxaPaisStrategyRepository;
 import com.bcopstein.negocio.repositorios.IEstoqueRepository;
@@ -17,21 +16,18 @@ public class ServicoEstoque {
 
     private IEstoqueRepository estoqueRepository;
     private ICalculoTaxaPaisStrategyRepository calculoTaxaPaisRepository;
-    private LimiteVendaFactory limiteVendaFactory;
 
     @Autowired
     public ServicoEstoque(IEstoqueRepository estoqueRepository,
             ICalculoTaxaPaisStrategyRepository calculoTaxaPaisRepository, LimiteVendaFactory limiteVendaFactory) {
         this.estoqueRepository = estoqueRepository;
         this.calculoTaxaPaisRepository = calculoTaxaPaisRepository;
-        this.limiteVendaFactory = limiteVendaFactory;
     }
 
     public int calcularTaxa(int subtotal) {
         return calculoTaxaPaisRepository.calcularTaxa(subtotal);
     }
 
-    // TODO Factory para limitar quantidade de item
     public boolean podeVender(Long codigo, Integer quantidade) {
 
         ItemEstoque item = buscarItemEstoqueByCodigo(codigo);

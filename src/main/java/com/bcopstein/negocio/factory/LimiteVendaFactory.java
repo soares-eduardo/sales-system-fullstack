@@ -15,9 +15,9 @@ public class LimiteVendaFactory {
 
         int hora = GregorianCalendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
-        if (hora > 9 && hora < 18){
+        if (hora > 9 && hora < 18) {
             return new HorarioComercial();
-        } 
+        }
         return new HorarioNaoComercial();
     }
 }

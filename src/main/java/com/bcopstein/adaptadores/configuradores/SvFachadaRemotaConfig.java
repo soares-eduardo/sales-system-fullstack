@@ -20,14 +20,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SvFachadaRemotaConfig {
-    
+
     @Bean
     CommandLineRunner commandLineRunner(
 
-        EstoqueRepository estoqueRepository,
-        ProdutoRepository produtoRepository,
-        VendaRepository vendaRepository    
-    ){
+            EstoqueRepository estoqueRepository, ProdutoRepository produtoRepository, VendaRepository vendaRepository) {
         return args -> {
 
             Produto fogao = new Produto("Fogão", 699);
@@ -42,14 +39,15 @@ public class SvFachadaRemotaConfig {
             ItemEstoque geladeiraEstoque = new ItemEstoque(2, geladeira);
             ItemEstoque lavaLoucaEstoque = new ItemEstoque(1, lavaLouca);
 
-            estoqueRepository.insertItemEstoque(List.of(fogaoEstoque,lavaRoupaEstoque,geladeiraEstoque,lavaLoucaEstoque));
+            estoqueRepository
+                    .insertItemEstoque(List.of(fogaoEstoque, lavaRoupaEstoque, geladeiraEstoque, lavaLoucaEstoque));
 
             Venda venda1 = new Venda();
 
             ItemVenda itemVenda1 = new ItemVenda(3, 2640, 10, geladeira, venda1);
             ItemVenda itemVenda2 = new ItemVenda(5, 550, 5, fogao, venda1);
 
-            venda1.setItemVenda(List.of(itemVenda1,itemVenda2));
+            venda1.setItemVenda(List.of(itemVenda1, itemVenda2));
 
             vendaRepository.insertVendas(List.of(venda1));
         };
