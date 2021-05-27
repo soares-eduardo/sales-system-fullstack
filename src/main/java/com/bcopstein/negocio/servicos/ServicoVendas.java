@@ -64,6 +64,7 @@ public class ServicoVendas {
         }
 
         venda.setItemVenda(itemVendas);
+        
         vendaRepository.insertVendas(List.of(venda));
 
         servicoEstoque.darBaixaEstoque(itens);

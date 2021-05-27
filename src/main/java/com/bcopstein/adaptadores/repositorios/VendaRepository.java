@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VendaRepository implements IVendaRepository{
-    
+public class VendaRepository implements IVendaRepository {
+
     private VendaJpa vendaJpa;
 
     @Autowired

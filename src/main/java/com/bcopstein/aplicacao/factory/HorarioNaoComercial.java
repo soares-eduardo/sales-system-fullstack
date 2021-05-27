@@ -27,13 +27,13 @@ public class HorarioNaoComercial implements LimiteVenda {
             if (item.getQuantidade() > QTD_PRODUTOS) {
                 return true;
             }
-        }                  
+        }
         return false;
     }
 
     @Override
     public boolean temRestricao(List<ItemEstoque> itens) {
-    
+
         double valorTotal = calcularValorTotal(itens);
 
         if (verificarQuantidadePorItem(itens) || itens.size() > QTD_ITENS || valorTotal > VALOR) {
