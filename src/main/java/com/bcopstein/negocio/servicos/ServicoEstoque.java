@@ -2,14 +2,15 @@ package com.bcopstein.negocio.servicos;
 
 import java.util.List;
 
-import com.bcopstein.aplicacao.factory.LimiteVenda;
 import com.bcopstein.negocio.entidades.ItemEstoque;
+import com.bcopstein.negocio.factory.LimiteVenda;
 import com.bcopstein.negocio.factory.LimiteVendaFactory;
 import com.bcopstein.negocio.repositorios.ICalculoTaxaPaisStrategyRepository;
 import com.bcopstein.negocio.repositorios.IEstoqueRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ServicoEstoque {
@@ -32,8 +33,6 @@ public class ServicoEstoque {
 
     // TODO Factory para limitar quantidade de item
     public boolean podeVender(Long codigo, Integer quantidade) {
-
-        limiteVendaFactory.getInstance();
 
         ItemEstoque item = buscarItemEstoqueByCodigo(codigo);
 
@@ -78,8 +77,8 @@ public class ServicoEstoque {
         return valores;
     }
 
+    @Transactional
     public void darBaixaEstoque(List<ItemEstoque> itens) {
-
         for (ItemEstoque item : itens) {
 
             ItemEstoque itemEstoque = buscarItemEstoqueByCodigo(item.getCodigo());

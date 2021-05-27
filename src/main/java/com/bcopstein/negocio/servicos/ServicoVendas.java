@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.ItemVenda;
+import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
+import com.bcopstein.negocio.factory.LimiteVendaFactory;
 import com.bcopstein.negocio.repositorios.IEstoqueRepository;
 import com.bcopstein.negocio.repositorios.IVendaRepository;
 
@@ -21,18 +23,33 @@ public class ServicoVendas {
 
     private IVendaRepository vendaRepository;
     private ServicoEstoque servicoEstoque;
+    private LimiteVendaFactory limiteVendaFactory;
 
     @Autowired
-    public ServicoVendas(IVendaRepository vendaRepository, ServicoEstoque servicoEstoque) {
+    public ServicoVendas(IVendaRepository vendaRepository, ServicoEstoque servicoEstoque,
+            LimiteVendaFactory limiteVendaFactory) {
         this.vendaRepository = vendaRepository;
         this.servicoEstoque = servicoEstoque;
+        this.limiteVendaFactory = limiteVendaFactory;
     }
-    // TODO Factory para limitar quantidade de produtos que compoem a venda e o valor total
+
     public boolean confirmaVenda(List<ItemEstoque> itens) {
 
-        int imposto = servicoEstoque.calculaSubtotal(itens)[1];
+        List<ItemEstoque> itensSolicitados = new ArrayList<ItemEstoque>();
 
-        // TODO Usar o calculaSubtotal para fazer o factory de valor total 
+        for (ItemEstoque item : itens) {
+            
+            Produto produto = servicoEstoque.buscarItemEstoqueByCodigo(item.getCodigo()).getProduto();
+            ItemEstoque itemEstoque = new ItemEstoque(item.getCodigo(), item.getQuantidade(), produto);
+            itensSolicitados.add(itemEstoque);
+            
+        }
+
+        if (limiteVendaFactory.getInstance().temRestricao(itensSolicitados)) {
+            return false;
+        }
+
+        int imposto = servicoEstoque.calculaSubtotal(itens)[1];
 
         List<ItemVenda> itemVendas = new ArrayList<ItemVenda>();
 
@@ -40,7 +57,8 @@ public class ServicoVendas {
 
         for (ItemEstoque item : itens) {
             ItemEstoque itemEstoque = servicoEstoque.buscarItemEstoqueByCodigo(item.getCodigo());
-            ItemVenda itemVenda = new ItemVenda(itemEstoque.getQuantidade(),
+
+            ItemVenda itemVenda = new ItemVenda(item.getQuantidade(),
                     itemEstoque.getProduto().getPrecoUnitario(), imposto, itemEstoque.getProduto(), venda);
             itemVendas.add(itemVenda);
         }
