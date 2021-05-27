@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.bcopstein.negocio.entidades.ItemEstoque;
 import com.bcopstein.negocio.entidades.ItemVenda;
+import com.bcopstein.negocio.entidades.Produto;
 import com.bcopstein.negocio.entidades.Venda;
+import com.bcopstein.negocio.factory.LimiteVendaFactory;
 import com.bcopstein.negocio.repositorios.IVendaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +22,52 @@ public class ServicoVendas {
 
     private IVendaRepository vendaRepository;
     private ServicoEstoque servicoEstoque;
+    private LimiteVendaFactory limiteVendaFactory;
 
     @Autowired
-    public ServicoVendas(IVendaRepository vendaRepository, ServicoEstoque servicoEstoque) {
+    public ServicoVendas(IVendaRepository vendaRepository, ServicoEstoque servicoEstoque,
+            LimiteVendaFactory limiteVendaFactory) {
         this.vendaRepository = vendaRepository;
         this.servicoEstoque = servicoEstoque;
+        this.limiteVendaFactory = limiteVendaFactory;
     }
 
     public boolean confirmaVenda(List<ItemEstoque> itens) {
 
-        servicoEstoque.darBaixaEstoque(itens);
-        int imposto = servicoEstoque.calculaSubtotal(itens)[1];
-
+        List<ItemEstoque> itensSolicitados = new ArrayList<ItemEstoque>();
         List<ItemVenda> itemVendas = new ArrayList<ItemVenda>();
+
+        for (ItemEstoque item : itens) {
+
+            Produto produto = servicoEstoque.buscarItemEstoqueByCodigo(item.getCodigo()).getProduto();
+            ItemEstoque itemEstoque = new ItemEstoque(item.getCodigo(), item.getQuantidade(), produto);
+            itensSolicitados.add(itemEstoque);
+
+        }
+
+        if (limiteVendaFactory.getInstance().temRestricao(itensSolicitados)) {
+            return false;
+        }
+
+        int imposto = servicoEstoque.calculaSubtotal(itens)[1];
 
         Venda venda = new Venda();
 
-        for (ItemEstoque item : itens) {
-            ItemEstoque itemEstoque = servicoEstoque.buscarItemEstoqueByCodigo(item.getCodigo());
-            ItemVenda itemVenda = new ItemVenda(itemEstoque.getQuantidade(),
-                    itemEstoque.getProduto().getPrecoUnitario(), imposto, itemEstoque.getProduto(), venda);
+        for (int i = 0; i < itensSolicitados.size(); i++) {
+
+            ItemVenda itemVenda = new ItemVenda(itens.get(i).getQuantidade(),
+                    itensSolicitados.get(i).getProduto().getPrecoUnitario(), imposto,
+                    itensSolicitados.get(i).getProduto(), venda);
+
             itemVendas.add(itemVenda);
+
         }
 
         venda.setItemVenda(itemVendas);
+        
         vendaRepository.insertVendas(List.of(venda));
+
+        servicoEstoque.darBaixaEstoque(itens);
 
         return true;
 

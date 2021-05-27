@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConfirmaVendaUC {
-    
+
     private ServicoVendas servicoVendas;
 
     @Autowired
@@ -19,6 +19,6 @@ public class ConfirmaVendaUC {
     }
 
     public boolean run(List<ItemEstoque> itens) {
-       return servicoVendas.confirmaVenda(itens); 
+        return servicoVendas.confirmaVenda(itens);
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CalculaSubtotalUC {
-    
+
     private ServicoEstoque servicoEstoque;
 
     @Autowired

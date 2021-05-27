@@ -48,7 +48,7 @@ class ServicoDeVendas {
     const param = [];
 
     itens.forEach((item) => {
-      param.push({ codigo: item.produto.codigo, quantidade: item.qtdade });
+      param.push({ codigo: item.produto.codigo, quantidade: item.qtdade});
     });
 
     const otherParam = {
